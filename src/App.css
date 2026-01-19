@@ -1,0 +1,406 @@
+:root {
+  --bg-page: #0b1020;
+  --bg-card: rgba(18, 24, 38, 0.96);
+  --bg-card-elevated: rgba(25, 33, 53, 0.96);
+  --accent: #7c5cff;
+  --accent-soft: rgba(124, 92, 255, 0.18);
+  --accent-subtle: rgba(124, 92, 255, 0.12);
+  --accent-strong: #4bd4ff;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --danger-bg: rgba(255, 80, 102, 0.14);
+  --danger-border: rgba(255, 80, 102, 0.4);
+  --danger-fg: #ffd7dd;
+  --fg-main: #f5f7ff;
+  --fg-muted: rgba(232, 237, 255, 0.75);
+  --fg-soft: rgba(232, 237, 255, 0.55);
+  --shadow-soft: 0 22px 65px rgba(0, 0, 0, 0.65);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+}
+
+body.theme-light {
+  --bg-page: #f5f7fb;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #ffffff;
+  --accent: #4f46e5;
+  --accent-soft: rgba(79, 70, 229, 0.12);
+  --accent-subtle: rgba(79, 70, 229, 0.08);
+  --accent-strong: #22c1c3;
+  --border-subtle: rgba(15, 23, 42, 0.06);
+  --border-strong: rgba(15, 23, 42, 0.12);
+  --danger-bg: rgba(239, 68, 68, 0.06);
+  --danger-border: rgba(239, 68, 68, 0.5);
+  --danger-fg: #b91c1c;
+  --fg-main: #0f172a;
+  --fg-muted: rgba(15, 23, 42, 0.7);
+  --fg-soft: rgba(15, 23, 42, 0.5);
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.16);
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background:
+    radial-gradient(1200px 800px at 0% 0%, rgba(124, 92, 255, 0.18), transparent 55%),
+    radial-gradient(1100px 760px at 100% 100%, rgba(34, 193, 195, 0.24), transparent 60%),
+    var(--bg-page);
+  color: var(--fg-main);
+}
+
+.todoShell {
+  width: min(760px, 100%);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-subtle);
+  padding: 22px 22px 20px;
+}
+
+.todoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.todoHeaderMain {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.todoTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todoTitle {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.04em;
+}
+
+.todoBadge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--accent-subtle);
+  background: var(--accent-soft);
+  color: var(--fg-soft);
+}
+
+.todoSub {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 14px;
+}
+
+.todoHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pillStats {
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--fg-muted);
+  background: linear-gradient(135deg, var(--accent-subtle), transparent);
+}
+
+.pillStats strong {
+  color: var(--fg-main);
+}
+
+.segmentedSwitch {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-elevated);
+  padding: 2px;
+  font-size: 11px;
+}
+
+.segmentedSwitch button {
+  border-radius: var(--radius-pill);
+  border: none;
+  padding: 4px 10px;
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.segmentedSwitch button.isActive {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.segmentedSwitch span.icon {
+  font-size: 12px;
+}
+
+.todoForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr) auto;
+  gap: 8px;
+  margin: 18px 0 14px;
+}
+
+.todoFormMain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.todoFormMeta {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 6px;
+}
+
+.todoInput {
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card-elevated);
+  color: var(--fg-main);
+  padding: 0 14px;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.todoInput::placeholder {
+  color: var(--fg-soft);
+}
+
+.todoInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.todoSelect,
+.todoDateTime {
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-elevated);
+  color: var(--fg-main);
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.todoDateTime::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+}
+
+.todoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.todoFooter {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 11px;
+  color: var(--fg-soft);
+  text-align: right;
+}
+
+.todoRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 10px;
+  border-radius: var(--radius-md);
+  padding: 10px 10px 10px 12px;
+  background: var(--bg-card-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.todoRowMain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.todoItem input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+}
+
+.todoText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.todoTextDone {
+  text-decoration: line-through;
+  color: var(--fg-soft);
+}
+
+.todoMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--fg-soft);
+}
+
+.priorityChip {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--accent-subtle);
+}
+
+.priority-high {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.14);
+}
+
+.priority-medium {
+  border-color: rgba(234, 179, 8, 0.35);
+  background: rgba(234, 179, 8, 0.16);
+}
+
+.priority-low {
+  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.16);
+}
+
+.todoDue {
+  opacity: 0.85;
+}
+
+.todoEmpty {
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--fg-soft);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
+  font-size: 13px;
+}
+
+.btn {
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  padding: 0 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--accent-subtle);
+  color: var(--fg-main);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.08s ease, opacity 0.12s ease;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.03);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #0b1020;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+  border-color: transparent;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+}
+
+.btnGhost {
+  height: 32px;
+  padding: 0 12px;
+  border-color: var(--border-subtle);
+  background: transparent;
+  color: var(--fg-muted);
+  font-size: 12px;
+}
+
+.btnGhost:hover:not(:disabled) {
+  background: var(--accent-subtle);
+  color: var(--fg-main);
+}
+
+.btnDanger {
+  height: 32px;
+  padding: 0 12px;
+  background: var(--danger-bg);
+  border-color: var(--danger-border);
+  color: var(--danger-fg);
+  font-size: 12px;
+}
+
+.btnDanger:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.todoRow:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-subtle);
+}
+
+@media (max-width: 640px) {
+  .todoShell {
+    padding: 18px 14px 16px;
+  }
+
+  .todoHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .todoForm {
+    grid-template-columns: 1fr;
+  }
+
+  .todoFormMeta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .todoRow {
+    grid-template-columns: 1fr;
+  }
+}
