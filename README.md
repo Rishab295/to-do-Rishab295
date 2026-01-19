@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/screenshot.png" alt="Todo App Screenshot" width="600">
+  <img src="Screenshot 2026-01-19 224308.png" alt="Todo App Screenshot" width="600">
 </p>
 
 
